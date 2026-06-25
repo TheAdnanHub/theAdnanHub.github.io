@@ -1,13 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TheAdnanHub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TheAdnanHub | Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #02040a;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.16), transparent 30%),
+        radial-gradient(circle at 80% 10%, rgba(0, 120, 255, 0.18), transparent 35%),
+        radial-gradient(circle at 50% 90%, rgba(0, 255, 180, 0.10), transparent 35%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 45px 45px;
+      z-index: -1;
+    }
+
+    header {
+      width: 100%;
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      background: rgba(2, 4, 10, 0.75);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(0,255,255,0.15);
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00f7ff;
+      text-shadow: 0 0 15px #00f7ff;
+    }
+
+    nav a {
+      color: #ddd;
+      text-decoration: none;
+      margin-left: 25px;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #00f7ff;
+    }
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 8% 80px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid rgba(0,255,255,0.35);
+      border-radius: 30px;
+      color: #00f7ff;
+      background: rgba(0,255,255,0.06);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 85px);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #00f7ff;
+      text-shadow: 0 0 25px rgba(0,247,255,0.8);
+    }
+
+    .hero p {
+      max-width: 650px;
+      font-size: 19px;
+      color: #c8d3e0;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .buttons a {
+      display: inline-block;
+      padding: 14px 24px;
+      margin-right: 12px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .primary {
+      background: #00f7ff;
+      color: #001014;
+      box-shadow: 0 0 25px rgba(0,247,255,0.4);
+    }
+
+    .secondary {
+      color: #00f7ff;
+      border: 1px solid rgba(0,247,255,0.5);
+    }
+
+    .dashboard-card {
+      padding: 28px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(0,255,255,0.18);
+      box-shadow: 0 0 45px rgba(0,255,255,0.08);
+      backdrop-filter: blur(20px);
+    }
+
+    .profile-circle {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f7ff, #0066ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      font-weight: bold;
+      color: #02040a;
+      box-shadow: 0 0 45px rgba(0,247,255,0.6);
+    }
+
+    .stat {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: #d6e2ef;
+    }
+
+    section {
+      padding: 80px 8%;
+    }
+
+    .section-title {
+      font-size: 38px;
+      margin-bottom: 35px;
+    }
+
+    .section-title span {
+      color: #00f7ff;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      padding: 28px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(0,255,255,0.14);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #00f7ff;
+      box-shadow: 0 0 35px rgba(0,247,255,0.16);
+    }
+
+    .card h3 {
+      color: #00f7ff;
+      margin-bottom: 12px;
+      font-size: 22px;
+    }
+
+    .card p {
+      color: #c8d3e0;
+      line-height: 1.6;
+    }
+
+    .skills span {
+      display: inline-block;
+      padding: 10px 15px;
+      margin: 8px;
+      border-radius: 20px;
+      background: rgba(0,247,255,0.08);
+      color: #00f7ff;
+      border: 1px solid rgba(0,247,255,0.25);
+    }
+
+    footer {
+      text-align: center;
+      padding: 35px;
+      color: #8fa3b5;
+      border-top: 1px solid rgba(0,255,255,0.12);
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <h1>Welcome to TheAdnanHub 👋</h1>
-    <p>I'm Adnan, an AI student, Mechanical Engineer, and lifelong learner.</p>
-    <p>Exploring AI, engineering, research, and innovative technologies.</p>
+
+  <header>
+    <div class="logo">TheAdnanHub</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="hero">
+    <div>
+      <div class="badge">AI • Engineering • Research • Innovation</div>
+      <h1>Welcome to <span>TheAdnanHub</span></h1>
+      <p>
+        I'm Adnan, an AI student, Mechanical Engineer, and lifelong learner.
+        Exploring AI, engineering, research, and innovative technologies through
+        real-world projects and continuous learning.
+      </p>
+
+      <div class="buttons">
+        <a href="#projects" class="primary">View Projects</a>
+        <a href="https://github.com/theAdnanHub" class="secondary" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <div class="dashboard-card">
+      <div class="profile-circle">A</div>
+      <div class="stat"><span>Focus</span><strong>Artificial Intelligence</strong></div>
+      <div class="stat"><span>Background</span><strong>Mechanical Engineering</strong></div>
+      <div class="stat"><span>Learning</span><strong>Machine Learning</strong></div>
+      <div class="stat"><span>Status</span><strong>Building Projects 🚀</strong></div>
+    </div>
+  </main>
+
+  <section id="about">
+    <h2 class="section-title">About <span>Me</span></h2>
+    <div class="card">
+      <p>
+        I am passionate about artificial intelligence, machine learning, robotics,
+        autonomous systems, and software development. My goal is to combine my
+        engineering background with modern AI technologies to solve practical
+        problems and build useful systems.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>🚗 Autonomous Vehicles</h3>
+        <p>Computer vision, perception, object detection, localization, and sensor fusion projects.</p>
+      </div>
+
+      <div class="card">
+        <h3>🤖 Reinforcement Learning</h3>
+        <p>Training intelligent agents for environments such as racing, games, and decision-making tasks.</p>
+      </div>
+
+      <div class="card">
+        <h3>🧠 Machine Learning</h3>
+        <p>Classification, prediction, data analysis, deep learning, and real-world ML experiments.</p>
+      </div>
+
+      <div class="card">
+        <h3>📄 Research & Reports</h3>
+        <p>Academic work, technical writing, AI research summaries, and university project documentation.</p>
+      </div>
+
+      <div class="card">
+        <h3>📷 Photography & Drone</h3>
+        <p>Travel, landscape, drone, and creative visual projects connected with technology and storytelling.</p>
+      </div>
+
+      <div class="card">
+        <h3>🌍 Travel & Creative Work</h3>
+        <p>Personal creative projects, travel ideas, digital content, and future portfolio stories.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Tech <span>Stack</span></h2>
+
+    <div class="skills">
+      <span>Python</span>
+      <span>Machine Learning</span>
+      <span>Deep Learning</span>
+      <span>Computer Vision</span>
+      <span>PyTorch</span>
+      <span>TensorFlow</span>
+      <span>SQL</span>
+      <span>HTML</span>
+      <span>CSS</span>
+      <span>JavaScript</span>
+      <span>GitHub</span>
+      <span>Research</span>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact <span>Me</span></h2>
+
+    <div class="card">
+      <p>Email: your-email@example.com</p>
+      <p>GitHub: github.com/theAdnanHub</p>
+      <p>LinkedIn: Add your LinkedIn link here</p>
+    </div>
+  </section>
+
+  <footer>
+    Made with ❤️ by Adnan | TheAdnanHub © 2026
+  </footer>
+
 </body>
 </html>
